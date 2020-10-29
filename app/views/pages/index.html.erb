@@ -4,10 +4,18 @@
     <h2 class="text-white">Picks is a service that you can find Life partner.</h2>
     <div class="row">
       <div class="col-md-offset-3 col-md-3">
-        <%= link_to 'Sign up', new_user_path, class: 'btn btn-block btn-white' %>
+        <% if logged_in? %>
+          <%= %>
+        <% else %>
+          <%= link_to 'Sign up', new_user_path, class: 'btn btn-block btn-white' %>
+        <% end %>
       </div>
       <div class="col-md-3">
-        <%= link_to 'Log in', '#',class: 'btn btn-block btn-white' %>
+        <% if logged_in? %>
+          <%= %>
+        <% else %>
+          <%= link_to 'Log in', login_path, class: 'btn btn-block btn-white' %>
+        <% end %>
       </div>
     </div>
   </div>

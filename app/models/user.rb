@@ -5,4 +5,6 @@ class User < ApplicationRecord
   validates :password, length: { in: 8..32 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
   validates :password_confirmation, length: { in: 8..32 } 
   has_secure_password
+  
+  has_one :profile
 end
