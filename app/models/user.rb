@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_secure_password
   
   has_one :profile
+  enum sex: { man: 0, woman: 1}
 end
