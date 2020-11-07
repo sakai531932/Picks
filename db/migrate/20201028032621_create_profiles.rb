@@ -7,7 +7,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :age
       t.string :price
       t.string :nickname
-
+      t.integer :sex
       t.timestamps
     end
   end

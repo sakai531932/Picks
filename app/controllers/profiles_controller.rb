@@ -1,8 +1,9 @@
 class ProfilesController < ApplicationController
   def index
-    @profiles = Profile.all
-    @profile = Profile.where(user_id: current_user.id)
+    @profile = Profile.find_by(user_id: current_user.id)
+    @profiles = Profile.where.not(user_id: current_user.id, sex: @profile.sex)
   end
+  
   def new
     @profile = Profile.new
   end
@@ -19,6 +20,6 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.require(:profile).permit(:image, :introduction, :age, :price, :nickname)
+    params.require(:profile).permit(:image, :introduction, :age, :price, :nickname, :sex)
   end
 end
