@@ -34,6 +34,13 @@
               <% end %>
             </li>
             <li>
+              <% if @profile.present? %>
+                <%= link_to edit_profile_path(current_user.id) do %>
+                  <%= image_tag "icons/edit.jpeg" %>
+                <% end %>
+              <% end %>
+            </li>
+            <li>
               <%= link_to logout_path, method: :delete do %>
                 <%= image_tag "icons/logout.png" %>
               <% end %>

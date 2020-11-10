@@ -17,6 +17,27 @@ class ProfilesController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @profile = Profile.find_by(user_id: current_user.id)
+  end
+  
+  def update
+    @profile = Profile.find_by(user_id: current_user.id)
+    if @profile.update_attributes(profile_params)
+      redirect_to "/", success: 'プロフィールを更新しました'
+    else
+      flash.now[:danger] = "更新に失敗しました"
+      render action: :edit
+    end
+    
+  end
+  
+  def destroy
+    @profile = Profile.find_by(user_id: current_user.id)
+    @profile.destroy
+    redirect_to root_path, success: 'プロフィールを削除しました'
+  end
 
   private
   def profile_params
