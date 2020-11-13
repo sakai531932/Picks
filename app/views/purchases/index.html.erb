@@ -1,19 +1,13 @@
 <div class="profile-index-wrapper">
   <div class="container">
-    <% @profiles.each do |profile| %>
+    <% @purchase_profiles.each do |profile| %>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="profile-index-single">
-            <h2 class="prifile-author">
+            <h2 class="profile-author">
               <%= profile.nickname %>
             </h2>
             <%= image_tag profile.image.url %>
-            
-            <% if !profile.purchase_users.include?(current_user) %>
-              <%= link_to purchases_path(profile_id: profile.id), method: :post do %>
-                <%= image_tag 'icons/buy.jpeg', class: 'profile-index-icon' %>
-              <% end %>
-            <% end %>
             
             <p class="profile-text">
               <%= profile.introduction %>

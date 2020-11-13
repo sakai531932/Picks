@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   def index
     @profile = Profile.find_by(user_id: current_user.id)
-    @profiles = Profile.where.not(user_id: current_user.id, sex: @profile.sex)
+    @profiles = Profile.where.not(user_id: current_user.id, sex: @profile.sex).includes(:purchase_users)
   end
   
   def new

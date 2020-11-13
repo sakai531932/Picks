@@ -7,5 +7,9 @@ class User < ApplicationRecord
  
   has_secure_password
   has_one :profile
+  has_many :messages
+  has_many :entries
+  has_many :purchases
+  has_many :purchase_profiles, through: :purchases, source: 'profile'
   enum sex: { man: 0, woman: 1}
 end
