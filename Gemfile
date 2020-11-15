@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'bcrypt'
 gem "carrierwave"
+gem "acts_as_follower", github: "tcocca/acts_as_follower"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

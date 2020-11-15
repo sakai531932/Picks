@@ -22,6 +22,14 @@
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li>
+              <%= link_to "あなたが購入した人のリスト", {controller: :users, action: :follow_list, user_id: current_user.id}, method: :get %>
+            </li>
+            
+            <li>
+              <%= link_to "あなたを購入した人のリスト", {controller: :users, action: :follower_list, user_id: current_user.id}, method: :get %>
+            </li>
+            
+            <li>
               <%= link_to purchases_path, method: :get do %>
                 <%= image_tag "icons/heart.png" %>
               <% end %>

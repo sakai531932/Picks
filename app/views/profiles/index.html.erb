@@ -9,10 +9,8 @@
             </h2>
             <%= image_tag profile.image.url %>
             
-            <% if !profile.purchase_users.include?(current_user) %>
-              <%= link_to purchases_path(profile_id: profile.id), method: :post do %>
-                <%= image_tag 'icons/buy.jpeg', class: 'profile-index-icon' %>
-              <% end %>
+            <% if !current_user.following? profile.user %>
+              <%= link_to "BUY", {controller: :users, action: :follow, user_id: profile.user.id}, method: :put %>
             <% end %>
             
             <p class="profile-text">

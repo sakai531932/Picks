@@ -12,4 +12,7 @@ class User < ApplicationRecord
   has_many :purchases
   has_many :purchase_profiles, through: :purchases, source: 'profile'
   enum sex: { man: 0, woman: 1}
+  
+  acts_as_followable
+  acts_as_follower
 end
