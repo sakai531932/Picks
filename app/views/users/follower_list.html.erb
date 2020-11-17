@@ -1,3 +1,7 @@
-<% @user.followers.each do |user| %>
-  <%= user.name %>
-<% end %>
+<div class="follower-list-wrapper" >
+  <% @user.followers.each do |user| %>
+    <div class="follower_list">
+      <%= user.name %>
+    </div>  
+  <% end %>
+</div>

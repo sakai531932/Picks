@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+  resources :rooms, only: [:show, :create] do
+    member do
+      post :entries, :messages
+    end
+  end
   get 'profiles/new'
   get 'sessions/new'
   root 'pages#index'
   
   resources :users
   resources :profiles
+  
   resources :messages
-  resources :rooms
+  resources :entries
   resources :purchases
   
   get    '/login',   to: 'sessions#new'

@@ -1,0 +1,15 @@
+<li id="message-<%= message.id %>">
+  <% user = message.user %>
+  <div class="balloon">
+    <% unless current_user?(user) %>
+      <div class="user"><%= link_to user.name, user %></div>
+    <% end %>
+    <div class="content"><%= message.content %></div>
+    <div class="timestamp">
+      Posted <%= time_ago_in_words(message.created_at) %> ago.
+      <% if current_user?(user) %>
+        <%= link_to "delete", message_path(message), class: "delete", method: :delete %>
+      <% end %>
+    </div>
+  </div>
+</li>

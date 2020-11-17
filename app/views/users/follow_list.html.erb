@@ -1,3 +1,9 @@
-<% @user.all_following.each do |user| %>
-  <%= user.name %> 
-<% end %>
+<div class="follower-list-wrapper" >
+  <% @user.all_following.each do |user| %>
+  <div class="follower_list">
+    <%= user.name %> 
+    <%= link_to "GO TO TALKROOM!", room_path(id: user.id) %>
+  </div>  
+  <% end %>
+</div>  
+

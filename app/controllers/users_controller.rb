@@ -16,8 +16,18 @@ class UsersController < ApplicationController
   def follow
     @user = User.find(params[:user_id])
     current_user.follow(@user)
-    redirect_to root_path
-  end 
+    
+    @room = Room.new
+    @room.entries.build(user_id: current_user.id)
+    @room.entries.build(user_id: params[:user_id])
+    @room.save
+    
+    @entry = Entry.new
+    @entry.build(user_id: current_user.id)
+    @entry.build(user_id: params[:user_id])
+    @entry.save
+    redirect_to room_path
+  end
   
   def follow_list
     @user = User.find(params[:user_id])
