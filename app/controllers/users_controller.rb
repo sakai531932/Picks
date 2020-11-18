@@ -18,15 +18,24 @@ class UsersController < ApplicationController
     current_user.follow(@user)
     
     @room = Room.new
-    @room.entries.build(user_id: current_user.id)
-    @room.entries.build(user_id: params[:user_id])
+    @room.user_id = current_user.id
+    @room.save
+    
+    @room = Room.new
+    @room.user_id = params[:user_id]
     @room.save
     
     @entry = Entry.new
-    @entry.build(user_id: current_user.id)
-    @entry.build(user_id: params[:user_id])
+    @entry.room_id = @room.id
+    @entry.user_id = current_user.id
     @entry.save
-    redirect_to room_path
+    
+    @entry = Entry.new
+    @entry.room_id = @room.id
+    @entry.user_id = params[:user_id]
+    @entry.save
+    
+    redirect_to room_path(@room.id)
   end
   
   def follow_list

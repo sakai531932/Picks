@@ -3,6 +3,7 @@ class RoomsController < ApplicationController
   before_action :correct_member, only: [:show, :messages]
   
   def show
+    @room = current_user.rooms.find_by(id: params[:id])
     @messages = @room.messages
     @message = Message.new
   end
