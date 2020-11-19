@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :correct_member, only: [:show, :messages]
   
   def show
-    @room = current_user.rooms.find_by(id: params[:id])
+    @room = current_user.rooms.find_by(followable_id: params[:id])
     @messages = @room.messages
     @message = Message.new
   end
@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
     end
     
     def correct_member
-      @room = current_user.rooms.find_by(id: params[:id])
+      @room = current_user.rooms.find_by(followable_id: params[:id])
       redirect_to root_path if @room.nil?
     end
     
