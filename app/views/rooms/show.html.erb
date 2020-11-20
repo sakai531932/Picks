@@ -7,8 +7,9 @@
           <%= render @messages %>
         </ul>
         
-        <%= form_for @message, url: messages_room_path(@room),
+        <%= form_for @message,
                           html: { class: 'message-form'} do |f| %>
+          <%= f.hidden_field :room_id, :value => @room.id %>
           <div class="field">
             <%= f.text_area :content, class: "content" %>
           </div>  

@@ -1,22 +1,12 @@
 class RoomsController < ApplicationController
   #before_action :logged_in_user
-  before_action :correct_member, only: [:show, :messages]
+  #before_action :correct_member, only: [:show, :messages]
   
   def show
-    @room = current_user.rooms.find_by(followable_id: params[:id])
+    @room = current_user.rooms.find(params[:id])
     @messages = @room.messages
     @message = Message.new
-  end
-  
-  def messages
-    @message = Message.new(message_params)
-    @room.touch
-    if @message.save
-      redirect_to @room
-    else
-      @messages = @room.messages
-      render "show"
-    end
+    #binding.pry
   end
   
   
