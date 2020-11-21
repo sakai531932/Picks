@@ -10,25 +10,28 @@ class MessagesController < ApplicationController
   end
   
   def create
+    #binding.pry
     @message = Message.new(message_params)
-    room = Room.find(message_params[:room_id])
+    room = Room.find(message_params[:room_id].to_i)
     #binding.pry
     if @message.save
-      redirect_to messages_path, method: :get
+      redirect_to messages_path(room_id: room.id), method: :get
     else
       @messages = room.messages
-      render "show"
+      redirect_to root_path
     end
   end
   
   def index
+    # binding.pry
+    @messages = Message.where(room_id: params[:room_id])
   end
     
   private
     
     def message_params
-      params[:message].merge!({ user_id: current_user.id })
-      params.require(:message).permit(:user_id, :room_id, :content)
+      #params[:message].merge!({ user_id: current_user.id, room_id: @room.id })
+      params.require(:message).permit(:user_id, :room_id, :content).merge(user_id: current_user.id)
     end
   
     def correct_user
